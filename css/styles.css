@@ -1,0 +1,265 @@
+/* 
+    Page web créé dans le cadre du cours de web Dev le 29/01/2020
+    Auteur : Ogamiss
+*/
+
+* {
+    font-family: 'Montserrat'; /* Police par défaut */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none; /* Supprime la mise en forme des liens */
+}
+
+/* Définition de la police "Montserrat" */
+@font-face{
+    font-family: "Montserrat";
+    src: url('polices/Montserrat-Regular.ttf') format("truetype");
+}
+
+body {
+    display: flex; /* conteneur "flexible" */
+    justify-content: center; /* Éléments portés centrés à l'horizontal */
+    flex-direction: column; /* Les éléments sont empilés */
+    align-items: center; /* Les éléments portés sont centrés à la verticale */
+    width: 100%; /* La page occupe toute la largeur */
+}
+
+header {
+    width: 916px;
+    display: flex;
+    flex-direction: column;
+}
+
+picture {
+    display: flex;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row; /* éléments côte à côte */
+    justify-content: space-between; /* répartis équitablement sur l'axe principal' */
+    background-color: black;
+}
+
+nav ul li {
+    display: flex;
+    justify-content: center; /* éléments centrés à l'horizontal' */
+    list-style-type: none; /* Pas de puces */
+    font-size: x-large; /* texte grossit en XLL!! */
+    flex-grow: 1; /* Espace occupé élargit */
+}
+
+nav ul li a {
+    padding: 10px; /* Marge intérieure */
+    color: white; /* Couleur du texte */
+}
+
+nav ul li:hover {
+    background-color:#9a330a;
+}
+nav input {
+    display: none;
+}
+
+section { width: 916px; }
+#principal { 
+    margin-top: 10px; /* Marge supérieure */
+    display: flex;
+    flex-direction: row;
+    text-align: justify;
+}
+#principal article { flex: 1; } 
+/* écriture raccourcie de flew-grow:1 et flew-shrink:1,
+chaque élément occupe l'espace idéal (+&-1) */
+#principal article img {
+    float: left; /* Mise en élément flottant contre lequel on peut venir se poser */
+    margin-right: 10px;
+}
+#prinicpal article p { padding-top: 16px; }
+#principal aside {
+    display: flex;
+    flex-direction: column; /* Éléments empilés */
+    align-items: center;
+    margin-left: 16px;
+    width: 246px;
+    background: transparent url('images/post-it-conseils.png') no-repeat 0 0; /* Fond */
+    font-size: small; /* Texte réduit en S */
+    font-weight: bold;
+    padding-left: 35px;
+    padding-bottom: 60px;
+}
+#principal aside img:first-child {
+    margin-top: 90px; /* Marge supérieure du premier élément (qui est une image) */
+}
+#principal aside img {
+    align-self: center;
+}
+#principal aside img:nth-child(3) {
+    margin-top: 10px; /* Marge supérieure du 3ème élément (qui est une image) */
+}
+
+#categories {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 45px;
+}
+h1 { 
+    color: #ff6811; /* Couleur du texte */
+    text-align: center; /* Le texte est centré */
+    font-size: xx-large; /* Le texte est grossi en XXL */
+}
+
+#categories h1 {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#categories article {
+    flex: 1;
+    height: 276px;
+    border: transparent thin solid;
+    display: flex;
+    justify-content: center;
+}
+@font-face{
+    font-family: "Nordic";
+    src: url('polices/Nordic.ttf') format("truetype");
+}
+#categories a {
+    font-family: 'Nordic';
+    font-size: xx-large;
+    color: black;
+}
+#gauche:hover, #centre:hover, #droite:hover {
+    border: black thin solid;
+    border-radius: 22px; /* arrondissement des angles du carré de sélection */
+    background-color: activeborder; /* couleur type (gris et semi transparent) */
+}
+#gauche {
+    background: transparent url(images/casqueroute.png) no-repeat center 10px;
+}
+#centre {
+    background: transparent url(images/casquecross.png) no-repeat center 0px;
+}
+#droite {
+    background: transparent url(images/casquepiste.png) no-repeat center 10px;
+}
+footer {
+    display: flex;
+    justify-content: center; /* centré horitontalement */
+    align-items: center;  /* centré verticalement */
+    position: fixed; /* Scotché en plus */
+    bottom: 0px; /* En bas de l'écran */
+    width: 100%; /* occupe toute la largeur */
+    background-color: #111111; /* couleur de fond */
+    color: grey; /* couleur du texte */
+    height: 35px;
+}
+footer p {
+    font-size: large;
+}
+footer a {
+    color: inherit;
+}
+
+@media screen and (max-width:576px) {
+    body {
+        font-size: large;
+    }
+    header, section {
+        width: auto;
+    }
+    header img {
+        width: 100%; /* Toute l'image */
+        background-color: black; /* Extension artificielle noire */
+        padding-bottom: 15px; /* du bas de l'image sur 15px */
+    }
+    /* création d'un "hamburger" */
+    nav {
+    position: relative;
+    top: 7px;
+    left: 7px;
+    z-index: 1; /* barre de navigation au premier plan */
+    }
+    nav ul { /* barre verticale */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        margin: -39px 0 0 -60px;
+        padding: 50px 10px 10px 60px;
+        background: black;
+        list-style-type: none;
+        transform: translate(-100%, 0); /* cache le menu par une translation vers la gauche */
+        transition: transform 0.5s ease; /* affichage du menu progressif (sur 0.5s) */
+    }
+    nav ul li {
+        display: list-item;
+        padding: 10px 0;
+        width: 100%;
+    }
+    nav input { /* affichage de la checkbox de la navigation */
+        display: block;
+        position: absolute;
+        opacity: 0;
+        width: 32px;
+        height: 32px;
+        z-index: 2; /* premier plan mais devant la navigation */
+    }
+    nav span { /* affichage du hamburger */
+        display: block;
+        width: 30px;
+        height: 5px;
+        margin-bottom: 5px;
+        position: relative;
+        background: black;
+        border-radius: 3px;
+        z-index: 1; /* Sous l'input défini avant */
+        transition: transform 0.5s ease, background 0.5s ease;
+    }
+    nav input:checked ~ span { /* affiche le fond de la navigation (blanc) lorsque le "hamburger" est coché */
+        background: white;
+    }
+    /* transformation du "hamburger" en croix */
+    nav input:checked ~ span:nth-child(2) {
+        transform: rotate(45deg) translate(7px, 5px); /* pivote la première barre de 45 degrés */
+    }
+    nav input:checked ~ span:nth-child(4) {
+        transform: rotate(-45deg) translate(10px, -6px); /* même chose dans le sens inverse sur la 3ème barre */
+    }
+    nav input:checked ~ span:nth-child(3) {
+        opacity: 0; /* cache la barre du milieu */
+    }
+    nav input:checked ~ ul {
+        transform: none;
+    }
+    
+    
+    #principal aside { display: none; }
+    
+    h1 {
+        font-size: x-large;
+    }
+    
+    #principal {
+        flex-direction: column;
+        margin: 0 10px;
+    }
+    
+    #principal p { padding: 8px; }
+    
+    #categories {   
+        flex-direction: column;
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+
+    #gauche, #centre, #droite {
+        background-size: contain;
+    }
+    
+    footer {
+        display: none;
+    }
+}

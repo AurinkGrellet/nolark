@@ -1,0 +1,117 @@
+#casques {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 45px;
+}
+
+#casques article {
+    width: 163px; /* Largeur de l'article' */
+    height: 275px; /* Hauteur de l'article */
+    margin: 10px; /* Marges extérieures */
+    padding: 5px; /* Marges intérieures */
+    border: white thin solid; /* Bordure blanche */
+    position: relative;
+}
+
+#casques article img {
+    margin-left: 6px;
+}
+
+#casques article:hover {
+    border: #bbb thin solid;
+}
+
+#casques .prix {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#casques .marque {
+    text-transform: uppercase; /* Mise en majuscule */
+    font-family: 'Nordic';
+    font-size: x-large; /* Grossit en XL */
+    display: inline; /* Affichage à la ligne pour éviter la superposition avec le stock */
+    white-space: nowrap; /* Pas de retour à la ligne */
+    font-weight: bold;
+}
+
+#casques .modele {
+    text-transform: capitalize;
+}
+
+#casques .stockok, #casques .stockko {
+    float: right; /* Alignement flottant à droite */
+    text-transform: uppercase;
+    padding: 2px; /* Marges intérieures */
+}
+
+#casques .stockok {
+    background-color: chartreuse;
+}
+
+#casques .stockko {
+    background-color: red;
+    color: white;
+}
+
+[data-tip] {
+    position:relative;
+    cursor: help;
+}
+
+[data-tip]:hover::before {
+    content: '';
+    top: 12px;
+    left: 10px;
+    position: absolute;
+    /* triangle au dessus du rectangle fuschia */
+    border-bottom: 12px solid fuchsia;
+    border-top: 5px solid transparent;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+}
+
+[data-tip]:hover::after {
+    text-transform: none; /* Annulation de la transformation précédente */
+    content: attr(data-tip); /* Correspond à la valeur de "data-tip" présent dans l'HTML */
+    position: absolute;
+    top: 28px;
+    left: 10px;
+    white-space: nowrap;
+    padding: 5px 10px; /* Marges intérieures (Haut/Bas Gauche/Droite) */
+    background-color: fuchsia;
+    color: white;
+    z-index: 1; /* Infobulle au-dessus du reste */
+}
+
+/* Utilisation du sprite d'étoiles pour la notation des casques */
+#casques .classement {
+    width: 85px;
+    height: 18px;
+    position: absolute;
+    bottom: 0;
+    object-fit: none;
+    margin: 0 39px;
+}
+#casques .classement.classement00 { object-position: 0 0; }
+#casques .classement.classement05 { object-position: 0 -18px; }
+#casques .classement.classement10 { object-position: 0 -36px; }
+#casques .classement.classement15 { object-position: 0 -54px; }
+#casques .classement.classement20 { object-position: 0 -72px; }
+#casques .classement.classement25 { object-position: 0 -90px; }
+#casques .classement.classement30 { object-position: 0 -108px; }
+#casques .classement.classement35 { object-position: 0 -126px; }
+#casques .classement.classement40 { object-position: 0 -144px; }
+#casques .classement.classement45 { object-position: 0 -162px; }
+#casques .classement.classement50 { object-position: 0 -180px; }
+
+
+/* Mise en page des vidéos */
+#video { display: flex; }
+#video img, #video article p, #video iframe { padding-top: 16px; } /* Marge intérieure */
+#video img { float: left; }
+#video article { width: 50%; padding-right: 10px; }
+#video article p span { color: red; font-weight: bold; }
+#video article p { padding-right: 10px; text-align: justify; }
