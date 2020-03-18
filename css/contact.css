@@ -104,4 +104,40 @@ input[type="email"]:valid ~ .input-validation::before {
     #motif {
         margin-top: 20px;
     }
+    #contact h1 {
+        text-align: center;
+    }
+    #coordo {
+        display: none;
+    }
+    #controles {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #btn_envoyer {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:768px) {
+    #contact {
+        margin: 0px 6px;
+        display: flex;
+        flex-direction: column;
+    }
+    #contact h1 {
+        width: 100%;
+    }
+    #coordo {
+        width: 100%;
+    }
+    #motif {
+        width: fit-content;
+    }
+    #controles {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
 }

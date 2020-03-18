@@ -30,8 +30,23 @@
 }
 
 /* Smartphone */
-@media screen and (max-width:576px) {
+@media screen and (max-width:768px) {
     #video {
-        display: none;
+        flex-direction: column;
+        margin: 8px 16px;
     }
+    #video article {
+        width: auto;
+    }
+    #video article p {
+        padding-left: 10px;
+    }
+    #video iframe {
+        width: auto;
+    }
+}
+
+/* Tablettes */
+@media screen and (min-width:576px) and (max-width:768px) {
+
 }

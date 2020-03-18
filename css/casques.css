@@ -115,3 +115,9 @@
 #video article { width: 50%; padding-right: 10px; }
 #video article p span { color: red; font-weight: bold; }
 #video article p { padding-right: 10px; text-align: justify; }
+
+@media screen and (max-width:768px) {
+    #casques {
+        justify-content: center;
+    }
+}
