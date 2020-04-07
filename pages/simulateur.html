@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+        <link href="..\css\styles.css" rel="stylesheet" type="text/css">
+        <link href="..\css\simulateur.css" rel="stylesheet" type="text/css">
+        <script src="..\js\renumeration.js"></script>
+        <title>Casques Nolark : Sécurité et confort, nos priorités !</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="Aurink GRELLET">
+        <meta name="description" content="Découvrez des casques moto dépassant même les exigences des tests de sécurité. Tous les casques Nolark au meilleur prix et avec en prime la livraison gratuite !">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <picture>
+                <source media="(max-width:576px)" srcset="../images/banniere_small.png">
+                <source srcset="../images/banniere.png">
+                <img src="..\images\banniere.png" alt="Nolark :  Protect your minds ! Cette bannière montre un coucher de soleil avec
+                                                    une femme embrassant un homme réalisant un stoppie sur sa moto.">
+            <!-- Image basée sur la création originale de ShiftGraphiX sur Pixabay : 
+            https://pixabay.com/fr/couple-stoppie-sportive-vélomoteur-3156613/ -->
+            </picture>
+            <nav>
+                <input type="checkbox">
+                <span></span>
+                <span></span>
+                <span></span>
+                <ul>
+                    <li><a href="..\index.html">Accueil</a></li>
+                    <li><a href="route.html">Route</a></li>
+                    <li><a href="cross.html">Cross</a></li>
+                    <li><a href="piste.html">Piste</a></li>
+                    <li><a href="enfants.html">Enfants</a></li>
+                    <li><a href="nous-contacter.html">Nous contacter</a></li>
+                </ul>
+            </nav>
+        </header>
+        <h1>Simulateur de calcul pour la force de vente</h1>
+        <form id="form_simulateur" name="form_contact" action="http://gil83.fr/nolark/testforms.php" method="POST">
+            <fieldset id="donnees">
+                <legend>Simulateur</legend>
+                <div><label for="num_ancien">Années d'ancienneté :</label> <input type="number" name="num_ancien" id="num_ancien" value="0" min="0" size="3" required></div>
+                <p id="nb_casques">Casques vendus par marque</p>
+                    <div><label for="num_xspirit">X-Spirit :</label> <input type="number" name="num_xspirit" id="num_xspirit" value="0" min="0" size="3"></div>
+                    <div><label for="num_multitec">Multitec :</label> <input type="number" name="num_multitec" id="num_multitec" value="0" min="0" size="3"></div>
+                    <div><label for="num_s20">S 20 :</label> <input type="number" name="num_s20" id="num_s20" value="0" min="0" size="3"></div>
+                    <div><label for="num_km">Km parcourus :</label> <input type="number" name="num_km" id="num_km" value="0" min="0" size="4"></div>
+            </fieldset>
+            <div id="calcul">
+                <input type="button" id="btn_calculer" name="sub_calculer" value="Effectuer le calcul">
+                <p id="remuneration">Rémunération : </p>
+                <p id="resultat"></p>
+            </div>
+        </form>
+        <footer>
+            <p>&copy;2020 Nolark - Créé par <a href="mailto:aurink.grellet@gmail.com">Aurink GRELLET</a></p>
+        </footer>
+    </body>
+</html>

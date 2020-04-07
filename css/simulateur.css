@@ -1,0 +1,56 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 6 avr. 2020, 14:27:19
+    Auteur     : Ogamiss
+*/
+
+#form_simulateur {
+    display: flex;
+    flex-wrap: nowrap;
+    text-align: right;
+}
+
+#calcul {
+    margin-left: 46px;
+    margin-top: 32px;
+    text-align: center;
+}
+
+#remuneration {
+    margin-top: 14px;
+}
+
+#resultat {
+    font-weight: bold;
+    color: red;
+}
+
+#donnees {
+    width: 333px;
+    padding-bottom: 8px;
+}
+
+#num_ancien {
+    margin-right: 58px;
+}
+
+#nb_casques {
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    margin-right: 54px;
+}
+
+#num_s20, #num_xspirit, #num_multitec {
+    margin-right: 104px;
+}
+
+#num_km {
+    margin-top: 12px;
+    margin-right: 78px;
+}
+
