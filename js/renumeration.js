@@ -1,23 +1,3 @@
-/* Calcul de la rémunération */
-function validCalcul() {
-    // Constantes utilisées pour les calculs de la simulation
-    const fixe = 1100;
-    
-    // calcul de la rémunération
-    if (window.document.querySelector("#num_ancien").value === "") {
-        alert("Les années d'ancienneté doivent être indiquées");
-    } else {
-        let prx_final = recupPrimeAnciennete(parseInt(window.document.querySelector("#num_ancien").value), fixe) 
-                + recupComS20(parseInt(window.document.querySelector("#num_s20").value))
-                + recupComXS(parseInt(window.document.querySelector("#num_xspirit").value))
-                + recupComMulti(parseInt(window.document.querySelector("#num_multitec").value))
-                + recupIndKm(parseInt(window.document.querySelector("#num_km").value));
-        
-        // affichage du prix final
-        window.document.querySelector("#resultat").innerHTML = prx_final + " €";
-    }
-}
-
 function recupPrimeAnciennete(nb, fixe) {
     const maj_ancien1 = 1.03;
     const maj_ancien2 = 1.06;
@@ -40,7 +20,7 @@ function recupComS20(nb) {
     const nbcasq_s20 = 0;
 
     // casques S 20
-    if (nb >= nbcasq_s20 && window.document.querySelector("#num_s20").value !== "") {
+    if (nb >= nbcasq_s20) {
         return nb * prx_s20 * com_s20;
     }
     else return 0;
@@ -52,7 +32,7 @@ function recupComXS(nb) {
     const nbcasq_xspirit = 50;
 
     // casques X-Spirit
-    if (nb >= nbcasq_xspirit && window.document.querySelector("#num_xspirit").value !== "") {
+    if (nb >= nbcasq_xspirit) {
         return (nb - nbcasq_xspirit) * prx_xspirit * com_xspirit;
     }
     else return 0;
@@ -67,7 +47,7 @@ function recupComMulti(nb) {
     const nbcasq_multitec2 = 50;
 
     // casques Multitec
-    if (window.document.querySelector("#num_multitec").value !== "") {
+    if (nb !== 0) {
         if (nb <= nbcasq_multitec1) {
             return nb * prx_multitec * com_multitec0;
         } else if (nb <= nbcasq_multitec2) {
@@ -83,7 +63,7 @@ function recupIndKm(nb) {
     const indemn_parKm = 0.15;
 
     // calcul de l'indemnité kilométrique
-    if (window.document.querySelector("#num_km").value !== "") {
+    if (nb !== 0) {
         let indemn_total = nb * indemn_parKm;
         if (indemn_total > 350) indemn_total = 350;
         return indemn_total;
@@ -91,6 +71,51 @@ function recupIndKm(nb) {
     else return 0;
 }
 
+/**
+ * Fonction principale récupérant les valeurs, calculant le montant de 
+ * la rémunération et qui s'occupe ensuite de l'afficher
+ * 
+ * @returns {undefined}
+ */
+function calcRemu() {
+    // Constantes utilisées pour les calculs de la simulation
+    const fixe = 1100;
+
+    // calcul de la rémunération
+    let prx_final = recupPrimeAnciennete(recupValeur("#num_ancien"), fixe)
+            + recupComS20(recupValeur("#num_s20"))
+            + recupComXS(recupValeur("#num_xspirit"))
+            + recupComMulti(recupValeur("#num_multitec"))
+            + recupIndKm(recupValeur("#num_km"));
+
+    // affichage du prix final
+    afficheRemu(prx_final);
+}
+
+function recupValeur(id) {
+    let nb = parseInt(window.document.querySelector(id).value);
+    if (isNaN(nb)) {
+        window.document.querySelector(id).value = 0;
+        return 0; 
+    }
+    else return nb;
+}
+
+/**
+ * Fonction qui affiche la rémunération dans l'élément d'id "resultat"
+ * 
+ * @param {type} prx_final
+ * @returns {undefined}
+ */
+
+function afficheRemu (prx_final) {
+    window.document.querySelector("#resultat").innerHTML = prx_final + " €";
+}
+
 window.addEventListener("load", function () {
-    window.document.querySelector("#btn_calculer").addEventListener("click", validCalcul);
+    let tabInputs = window.document.querySelectorAll("input");
+    for (let i=0; i < tabInputs.length ; i++) {
+        // ajout d'un listener sur tous les <input> sur l'évènement inKeyUp
+        tabInputs[i].addEventListener("keyup", calcRemu);
+    }
 });
