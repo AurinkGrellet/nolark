@@ -84,8 +84,8 @@ function calcRemu() {
     // calcul de la rémunération
     let prx_final = recupPrimeAnciennete(recupValeur("#num_ancien"), fixe)
             + recupComS20(recupValeur("#num_s20"))
-            + recupComXS(recupValeur("#num_xspirit"))
-            + recupComMulti(recupValeur("#num_multitec"))
+            + recupComXS(recupValeur("#num_xs"))
+            + recupComMulti(recupValeur("#num_multi"))
             + recupIndKm(recupValeur("#num_km"));
 
     // affichage du prix final
@@ -109,7 +109,7 @@ function recupValeur(id) {
  */
 
 function afficheRemu (prx_final) {
-    window.document.querySelector("#resultat").innerHTML = prx_final + " €";
+    window.document.querySelector("#remuneration").innerHTML = prx_final + " €";
 }
 
 window.addEventListener("load", function () {
