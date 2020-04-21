@@ -75,7 +75,7 @@ function recupIndKm(nb) {
  * Fonction principale récupérant les valeurs, calculant le montant de 
  * la rémunération et qui s'occupe ensuite de l'afficher
  * 
- * @returns {undefined}
+ * @returns {void}
  */
 function calcRemu() {
     // Constantes utilisées pour les calculs de la simulation
@@ -92,20 +92,26 @@ function calcRemu() {
     afficheRemu(prx_final);
 }
 
-function recupValeur(id) {
-    let nb = parseInt(window.document.querySelector(id).value);
-    if (isNaN(nb)) {
+/**
+ * Fonction retournant un entier depuis une valeur prise dans le DOM
+ * 
+ * @param {string} id
+ * @returns {integer}
+ */
+export function recupValeur(id) {
+    var valeur = parseInt(window.document.querySelector(id).value);
+    if (isNaN(valeur)) {
         window.document.querySelector(id).value = 0;
         return 0; 
     }
-    else return nb;
+    else return valeur;
 }
 
 /**
  * Fonction qui affiche la rémunération dans l'élément d'id "resultat"
  * 
- * @param {type} prx_final
- * @returns {undefined}
+ * @param {integer} prx_final
+ * @returns {void}
  */
 
 function afficheRemu (prx_final) {

@@ -1,3 +1,5 @@
+import {recupValeur} from './remuneration.js';
+
 /***************************
  *    Fonctions métiers    *
  ***************************/
