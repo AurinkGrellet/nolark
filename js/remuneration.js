@@ -118,6 +118,11 @@ function afficheRemu (prx_final) {
     window.document.querySelector("#remuneration").innerHTML = prx_final + " €";
 }
 
+
+/***************************
+ *        Listeners        *
+ ***************************/
+
 window.addEventListener("load", function () {
     let tabInputs = window.document.querySelectorAll("input");
     for (let i=0; i < tabInputs.length ; i++) {

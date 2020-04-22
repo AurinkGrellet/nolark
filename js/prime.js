@@ -1,17 +1,67 @@
+/**
+ * Fichier JS pour l'exercice sur la prime des chauffeurs.
+ * GUI : pages/livrexpress.html
+ * 
+ */
 import {recupValeur} from './remuneration.js';
 
-/***************************
- *    Fonctions métiers    *
- ***************************/
+/**
+ * Listeners sur les inputs
+ * 
+ */
+window.addEventListener('load', function () {
+    // tabEvents est une collection d'évenements
+    let tabEvents = ['keyup', 'click'];
+
+    // tabInputs est une collection de <input>
+    let tabInputs = window.document.querySelectorAll('input[type="number"]');
+
+    // Parcours de tabInputs en s'appuyant sur le nombre de <input> et sur tabEvents
+    for (let i = 0; i < tabInputs.length; i++) {
+        for (let j = 0; j < tabEvents.length; j++) {
+            // Ajout d'un Listener sur tous les <input> sur les évènements listés dans tabEvents
+            tabInputs[i].addEventListener(tabEvents[j], calculerPrime);
+        }
+    }
+
+    // Gestion de l'input de type range (recopie de la valeur dans l'output)
+    window.document.querySelector('#nb_accidents').addEventListener('change', function () {
+        window.document.querySelector('#o_nb_accidents').value = recupValeur('#nb_accidents');
+        calculerPrime();
+    });
+    
+    // Suppression du message indiquant la prime sur clic du bouton reset
+    window.document.querySelector('#btn_annuler').addEventListener('click', function() {
+        window.document.querySelector('#remuneration').innerHTML = '';
+    });
+
+});
 
 /**
- * Fonction retournant la prime de distance
+ * Procédure qui s'occupe du recueil des paramètres de calcul de la prime ainsi que de l'affichage
  * 
- * @param {type} nb
- * @returns {undefined}
+ * @returns {void}
+ */
+function calculerPrime() {
+    // Déclaration et affectation des variables
+    let nbAccidents = recupValeur('#nb_accidents');
+    let nbAncien = recupValeur('#nb_ancien');
+    let nbKm = recupValeur('#nb_km');
+    let primeAnnuelleSansAccident = recupPrimeAnnuelle(recupPrimeDist(nbKm), recupPrimeAncien(nbAncien),0);
+    let primeAnnuelle = recupPrimeAnnuelle(recupPrimeDist(nbKm), recupPrimeAncien(nbAncien),nbAccidents);
+    
+    // Gestion de l'affichage de la prime en fonction du nombre d'accidents
+    gestionNbAccidents(nbAccidents, primeAnnuelleSansAccident, primeAnnuelle);
+}
+
+/**
+ * Fonction qui retourne la prime de distance
+ * 
+ * @param {integer} nb
+ * @returns {float}
  */
 function recupPrimeDist(nb) {
-    const primeMax = 900, primeKm =  0.01;
+    const primeMax = 900, primeKm = 0.01;
     let indem = nb * primeKm;
     if (indem > primeMax) {
         return primeMax;
@@ -21,10 +71,10 @@ function recupPrimeDist(nb) {
 }
 
 /**
- * Fonction retournant la prime d'ancienneté
+ * Fonction qui retourne la prime d'ancienneté
  * 
- * @param {type} nb
- * @returns {undefined}
+ * @param {integer} nb
+ * @returns {float}
  */
 function recupPrimeAncien(nb) {
     const nbMin = 4, primeMin = 300, primeSupp = 30;
@@ -35,6 +85,14 @@ function recupPrimeAncien(nb) {
     }
 }
 
+/**
+ * Fonction qui retourne la prime annuelle
+ * 
+ * @param {float} primeDist
+ * @param {float} primeAncien
+ * @param {integer} nbAccidents
+ * @returns {float}
+ */
 function recupPrimeAnnuelle(primeDist, primeAncien, nbAccidents) {
     if (nbAccidents > 3) {
         return 0;
@@ -43,92 +101,31 @@ function recupPrimeAnnuelle(primeDist, primeAncien, nbAccidents) {
     }
 }
 
-
-
-/***************************
- *        Listeners        *
- ***************************/
-
-window.addEventListener('load', function() {
-    // tabEvent collection d'événements
-    let tabEvents = ['keuyp', 'click'];
-    // tabInputs collection de <input>
-    let tabInputs = window.document.querySelectorAll('input[type="number"]');
-    // Parcours de tabInputs en s'appuyant sur le nombre de <input> et sur tabEvents
-    for (let i = 0; i < tabInputs.length; i++) {
-        for (let j = 0; j < tabEvents.length; j++) {
-            // Ajout des listeners sur tous les <input> des events listés dans tabEvents
-            tabInputs[i].addEventListener(tabEvents[j], calculerPrime);
-        }
-    }
-    // Gestion de l'input de type range (recopie de la valeur dans l'output)
-    window.document.querySelector('#nb_accidents').addEventListener('change', function() {
-        window.document.querySelector('#o_nb_accidents').value = recupValeur('#nb_accidents');
-        calculerPrime();
-    });
-});
-
-
-
-/***************************
- *         Calculs         *
- ***************************/
-
 /**
- * Procédure s'occupant du recueil des paramètres de calcul de la prime et de l'affichage
+ * Procédure qui gère l'affichage en fonction du nombre d'accidents
+ * 
+ * @param {integer} nbAccidents
+ * @param {float} primeAnnuelleSansAccident
+ * @param {float} primeAnnuelle
  * @returns {void}
  */
-function calculerPrime() {
-    let nbAccidents = recupValeur('#nb_accidents');
-    let nbAncien = recupValeur('#nb_ancien');
-    let nbKm = recupValeur('#nb_km');
-    let primeAnnuelleSansAccident = recupPrimeAnnuelle(recupPrimeDist(nbKm), recupPrimeAncien(nbAncien),0);
-    let primeAnnuelle = recupPrimeAnnuelle(recupPrimeDist(nbKm), recupPrimeAncien(nbAncien),nbAccidents);
-    // Gestion de l'affichage de la prime en fonction du nombre d'accidents
-    gestionNbAccidents(nbAccidents, primeAnnuelleSansAccident, primeAnnuelle);
-}
-
-/**
- * Procédure gérant l'affichage selon le nombre d'accidents
- * 
- * @param {type} nbAccidents
- * @param {type} primeAnnuelleSansAccident
- * @param {type} primeAnnuelle
- * @returns {undefined}
- */
-function gestionNbAccidents(nbAccidents, primeAnnuelleSansAccident, primeAnnuelle) {
+function gestionNbAccidents(nbAccidents, primeAnnuelleSansAccident, primeAnnuelle) {  
     let elH2 = window.document.querySelector('#remuneration');
-    // Si #remuneration (balise h2 avec id 'remuneration) n'existe pas, le créer)
+    /* utilisation de #remuneration au lieu de #prime pour réutiliser les règles
+     * CSS définie dans simulateur.css
+     * Si #remuneration (<h2 id='remuneration'></h2>) n'existe pas, on le créé */
     if (!elH2) {
         elH2 = window.document.createElement('h2');
         elH2.id = 'remuneration';
         window.document.querySelector('#recueilinfos').appendChild(elH2);
     }
     
-    // Gestion de l'affichage avec gestion spéciale pour 0 et 1 accident
+    // Gestion de l'affichage avec gestion particulière pour 0 et 1 accident
     if (nbAccidents === 0) {
-        elH2.innderHTML = 'Votre prime sera de ' + primeAnnuelle + '€';
+        elH2.innerHTML = 'Votre prime sera de ' + primeAnnuelle + ' €';
     } else if (nbAccidents === 1) {
-        elH2.innerHTML = 'Votre prime sera de ' + primeAnnuelle
-                       + ' € alors qu\'elle aurait pu être de '
-                       + primeAnnuelleSansAccident + ' € sans ' + nbAccidents
-                       + ' accident responsable...';
-    }
-}
-
-/**
- * Fonction retournant un entier depuis une valeur prise dans le DOM et 
- * replaçant le champ à 0 sur la valeur saisie n'est pas un nombre
- * 
- * @param {type} id
- * @returns {undefined}
- */
-function recupValeur(id) {
-    var valeur = parseInt(window.document.querySelector(id).value);
-    if (isNaN(valeur)) {
-        window.document.querySelector(id).value = 0;
-        return 0;
+        elH2.innerHTML = 'Votre prime sera de ' + primeAnnuelle + ' € alors qu\'elle aurait pu être de ' + primeAnnuelleSansAccident + ' € sans ' + nbAccidents + ' accident responsable...';
     } else {
-        return valeur;
+        elH2.innerHTML = 'Votre prime sera de ' + primeAnnuelle + ' € alors qu\'elle aurait pu être de ' + primeAnnuelleSansAccident + ' € sans ' + nbAccidents + ' accidents responsables...';
     }
 }
