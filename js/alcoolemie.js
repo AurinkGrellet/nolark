@@ -42,3 +42,35 @@ function getAlcoolemie(sexe, poids, nbVerres) {
         return 0;
     }
 }
+
+
+/**
+ * Fonction qui retourne l'amende en fonction de l'alcoolémie
+ * 
+ * @param {float} alcoolemie
+ * @returns {String}
+ */
+function getAmende(alcoolemie) {
+    const alcoolSeuil = 0.8;
+    if (alcoolemie < alcoolSeuil) {
+        return 'Minorée : 90 € / Forfaitaire : 135 € / Majorée : 375 €';
+    } else {
+        return '4500 €';
+    }
+}
+
+
+/**
+ * Fonction qui retourne la sanction encourue en fonction de l'alcoolémie
+ * 
+ * @param {float} alcoolemie
+ * @returns {string}
+ */
+function getSanction(alcoolemie) {
+    const alcoolSeuil = 0.8;
+    if (alcoolemie < alcoolSeuil) {
+        return '6 points + suspension 3 ans';
+    } else {
+        return '6 points + 2 ans de prison + suspension 3 ans + stage de sensibilisation';
+    }
+}
