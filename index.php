@@ -14,30 +14,7 @@ Email : aurink.grellet@gmail.com
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <header>
-            <picture>
-                <source media="(max-width:576px)" srcset="images/banniere_small.png">
-                <source srcset="images/banniere.png">
-                <img src="images\banniere.png" alt="Nolark :  Protect your minds ! Cette bannière montre un coucher de soleil avec
-                                                    une femme embrassant un homme réalisant un stoppie sur sa moto.">
-            <!-- Image basée sur la création originale de ShiftGraphiX sur Pixabay : 
-            https://pixabay.com/fr/couple-stoppie-sportive-vélomoteur-3156613/ -->
-            </picture>
-            <nav>
-                <input type="checkbox">
-                <span></span>
-                <span></span>
-                <span></span>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="pages\route.html">Route</a></li>
-                    <li><a href="pages\cross.html">Cross</a></li>
-                    <li><a href="pages\piste.html">Piste</a></li>
-                    <li><a href="pages\enfants.html">Enfants</a></li>
-                    <li><a href="pages\nous-contacter.html">Nous contacter</a></li>
-                </ul>
-            </nav>
-        </header>
+        <?php include('includes/header.html.inc.php'); ?>
 	<section id="principal">
             <article>
                 <img src="images\post-it.png" alt="Post-It : Penser à rentrer en vie">
@@ -80,8 +57,6 @@ Email : aurink.grellet@gmail.com
             <article id="centre"><a href="cross.html">Cross</a></article>
             <article id="droite"><a href="piste.html">Piste</a></article>
         </section>
-        <footer>
-            <p>&copy;2020 Nolark - Créé par <a href="mailto:aurink.grellet@gmail.com">Aurink GRELLET</a></p>
-        </footer>
+        <?php include('includes/footer.html.inc.php'); ?>
     </body>
 </html>

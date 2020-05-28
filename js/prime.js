@@ -7,7 +7,6 @@ import {recupValeur} from './remuneration.js';
 
 /**
  * Listeners sur les inputs
- * 
  */
 window.addEventListener('load', function () {
     // tabEvents est une collection d'évenements

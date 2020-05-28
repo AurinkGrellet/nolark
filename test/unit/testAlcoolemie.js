@@ -30,8 +30,8 @@ MesTestsUnitaires.prototype.testsGetSanction = function() {
 
 MesTestsUnitaires.prototype.testsGetInt = function() {
     /*:DOC +=
-     * <input type="number" id="num_verre" value="1">
-     * <input type="number" id="num_poids" value="100">
+       <input type="number" id="num_verre" value="1">
+       <input type="number" id="num_poids" value="100">
      */
     assertTrue('Test poids 100 kg', 100 === getInt('#num_poids'));
     assertTrue('Test 1 verre', 1 === getInt('#num_verre'));

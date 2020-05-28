@@ -1,3 +1,90 @@
+/* 
+ * Listeners sur les inputs
+ */
+
+window.addEventListener('load', function () {
+    // tabEvents est une collection d'évenements
+    let tabEvents = ['keyup', 'click'];
+
+    // tabInputs est une collection de <input>
+    let tabInputs = window.document.querySelectorAll('input:not([id="btn_annuler"])');
+
+    // Parcours de tabInputs en s'appuyant sur le nombre de <input> et sur tabEvents
+    for (let i = 0; i < tabInputs.length; i++) {
+        for (let j = 0; j < tabEvents.length; j++) {
+            // Ajout d'un Listener sur tous les <input> sur les évènements listés dans tabEvents
+            tabInputs[i].addEventListener(tabEvents[j], gestionAlcoolemie);
+        }
+    }
+    
+    // Suppression du bug du bouton reset
+    window.document.querySelector('#btn_annuler').addEventListener('click', function () {
+        window.document.querySelector('#btn_annuler').form.reset();
+        gestionAlcoolemie();
+    });
+});
+
+/**
+ * Procédure qui s'occupe du recueil des paramètres de calcul de l'acoolémie
+ * ainsi que de son affichage
+ * 
+ * @returns {void}
+ */
+function gestionAlcoolemie() {
+    // Déclaration et affectation des variables
+    let poids = getInt('#num_poids');
+    let sexe = getString('#sexe input[type="radio"]:checked');
+    let nbVerres = getInt('#num_verre');
+    let alcoolemie = getAlcoolemie(sexe, poids, nbVerres);
+
+    // Gestion des affichages
+    if(alcoolemie >= 0.5) {
+        affiche('h3','#simulation','alcoolemie','Alcoolémie : ' + alcoolemie + ' g/l de sang','red');
+        affiche('h3','#simulation','amende','Amende : ' + getAmende(alcoolemie),'black');
+        affiche('h3','#simulation','sanction','Sanction : ' + getSanction(alcoolemie),'black');
+    } else {
+        affiche('h3','#simulation','alcoolemie','Alcoolémie : ' + alcoolemie + ' g/l de sang','black');
+        supprime('amende');
+        supprime('sanction');
+    }
+}
+
+/**
+ * Fonction générique qui un crée ou met à jour un élément HTML de type typeEl
+ * dans un élément HTML cible, en renseignant un id, un contenu et une couleur
+ * 
+ * @param {String} typeEl
+ * @param {String} cible
+ * @param {String} id
+ * @param {String} contenu
+ * @param {String} couleur
+ * @returns {void}
+ */
+function affiche(typeEl, cible, id, contenu, couleur) {
+    let elH3 = window.document.querySelector('#' + id);
+    if (!elH3) {
+        elH3 = window.document.createElement(typeEl);
+        elH3.id = id;
+        window.document.querySelector(cible).appendChild(elH3);
+    }
+    // Affichage de l'élément dans la couleur demandée
+    elH3.style.setProperty('color',couleur);
+    elH3.innerHTML = contenu;
+}
+
+/**
+ * Fonction générique qui supprime un élément HTML à partir de son id
+ * 
+ * @param {String} id
+ * @returns {void}
+ */
+function supprime(id) {
+    let el = window.document.querySelector('#' + id);
+    if (el) {
+        el.remove();
+    }
+}
+
 /*
  * Fonction qui retourne l'alcool pur ingéré en fonction du nombre
  * de verre
